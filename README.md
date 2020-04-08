@@ -6,7 +6,7 @@ Examples:
 * `3 d 6` represents a roll of three 6-sided dice.
 * `d(20) + 5` is a 20-sided die with 5 added to the result.
 * `d(6) + d(4)` adds a 6-sided die to a 4-sided one.
-* `d(8) * d(2)` is two 8-sided dice which are multiplied by 2 if a coin comes up heads.
+* `d(8) * d(2)` is an 8-sided die which is multiplied by 2 if a coin comes up heads.
 * `(8 d 6) / 2` is half the result of eight six-sided dice.
 * `d(6) reroll (_ < 2)` is a six-sided die, rerolling if it's 1, but keeping the reroll.
 * `d(6) reroll (_ < 2) repeat 8` is 8d6 rerolling any 1s.
