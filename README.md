@@ -12,5 +12,5 @@ Examples:
 
 If `roll:Dice`, then:
   * `roll.probabilities` gives you the probability distribution.
-  * `roll.sample` actually rolls the die and gives you a random result.
+  * `roll.sample` actually rolls the dice and gives you a random result.
   
