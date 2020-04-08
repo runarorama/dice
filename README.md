@@ -12,6 +12,7 @@ Examples:
 * `d(6) reroll (_ < 2) repeat 8` is 8d6 rerolling any 1s.
 * `d(20) map (x => if (x == 1) 20 else x)` is a 20-sided die, treating rolls of 1 as 20.
 * `d(6) flatMap (_ d 6)` rolls a number of dice determined by a die roll.
+* `d(100) flatMap (1 d _)` rolls a die whose number of sides is determined by a 100-sided die.
 
 If `roll:Dice`, then:
   * `roll.probabilities` gives you the probability distribution.
