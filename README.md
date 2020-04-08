@@ -1,5 +1,7 @@
 # dice
-A Scala library for rolling dice and analyzing probability distributions. Provides the type `Dice` which has a rich algebra for combining die rolls.
+A Scala library for statistical modelling and analyzing probability distributions. Provides the type `Dice` which has a rich algebra for combining die rolls.
+
+While this is not primarily for generating random numbers with dice, it does allow you to sample the distributions to "roll" the dice.
 
 Examples:
 
