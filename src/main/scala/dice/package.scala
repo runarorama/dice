@@ -9,14 +9,23 @@ package object dice {
   import cats.implicits._
   import scala.language.implicitConversions
 
+  /**
+   * A distribution is an mset with rational multiplicities, with the convention
+   * that the size of the mset is exactly 1 or 0.
+   */
+  type Distribution[A] = RatBag[A]
+
   /** Roll dice and get a random result. */
   def roll(d: Dice): Int = d.roll
 
   /** An n-sided die */
-  def d(sides: Int) = Dice(Multiset(Range(1, sides + 1): _*))
+  def d(sides: Int) =
+    Dice(Range(1, sides + 1).foldLeft(empty.rep) {
+      case (bag, n) => bag.insertN(n, Rational(1, sides))
+    })
 
   /** A die that always yields n */
-  def constant(n: Int) = Dice(Multiset(n))
+  def constant(n: Int) = Dice(empty.rep.insertN(n, Rational(1)))
 
   /** A degenerate die that yields nothing. */
   val empty = Dice(MSet.empty)
