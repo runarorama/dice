@@ -50,7 +50,7 @@ case class Dice(rep: Multiset[Int]) {
     k <- sides
     r <- List.fill(n)(dice.d(k)) match {
       case h :: t => t.foldLeft(h)(_ + _)
-      case _ => empty
+      case _ => constant(0)
     }
   } yield r
 

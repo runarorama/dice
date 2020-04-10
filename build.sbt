@@ -1,15 +1,15 @@
-scalaVersion := "2.12.11"
+scalaVersion := "2.13.1"
 
 name := "dice"
 organization := "com.higher-order"
-version := "0.2.3"
+version := "0.3.0"
 
 resolvers += Resolver.githubPackages("runarorama")
 
 addCompilerPlugin("org.typelevel" %% "kind-projector" % "0.11.0" cross CrossVersion.full)
 
-libraryDependencies += "com.higher-order" %% "MSet" % "0.4.0"
-libraryDependencies += "org.typelevel" %% "spire" % "0.16.0"
+libraryDependencies += "com.higher-order" %% "MSet" % "0.7.0"
+libraryDependencies += "org.typelevel" %% "spire" % "0.17.0-M1"
 libraryDependencies += "org.typelevel" %% "cats-core" % "2.0.0"
 
 githubOwner := "runarorama"

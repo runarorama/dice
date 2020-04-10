@@ -24,10 +24,10 @@ package object dice {
   /** A die that always rolls 0. */
   val zero = constant(0)
 
+  /** Sum multiple rolls, dropping the lowest `k` results. */
   def dropKLowest(dice: Multiset[Dice], k: Natural): Dice =
     Dice(
       dice
-        .toList(x => x)
         .traverse(_.rep)
         .map(_.toList.sorted.drop(k.toInt).sum))
 
