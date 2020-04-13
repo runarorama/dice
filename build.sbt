@@ -8,7 +8,7 @@ resolvers += Resolver.githubPackages("runarorama")
 
 addCompilerPlugin("org.typelevel" %% "kind-projector" % "0.11.0" cross CrossVersion.full)
 
-libraryDependencies += "com.higher-order" %% "MSet" % "0.7.0"
+libraryDependencies += "com.higher-order" %% "MSet" % "0.7.1"
 libraryDependencies += "org.typelevel" %% "spire" % "0.17.0-M1"
 libraryDependencies += "org.typelevel" %% "cats-core" % "2.0.0"
 

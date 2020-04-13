@@ -25,7 +25,7 @@ package object dice {
     })
 
   /** A die that always yields n */
-  def constant(n: Int) = Dice(empty.rep.insertN(n, Rational(1)))
+  def constant(n: Int) = Dice(MSet(n -> Rational(1)))
 
   /** A degenerate die that yields nothing. */
   val empty = Dice(MSet.empty)

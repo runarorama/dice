@@ -30,9 +30,9 @@ object DnD {
     for {
       roll <- d(20)
       dmg <- if (roll == 20) damage + damage
-      else if (roll == 1) constant(0)
-      else if (roll + bonus >= ac) damage
-      else constant(0)
+             else if (roll == 1) constant(0)
+             else if (roll + bonus >= ac) damage
+             else constant(0)
     } yield dmg
 
   /**
@@ -41,7 +41,7 @@ object DnD {
     * successful save. Gives the combined probability distribution for the
     * results of those rolls.
     */
-  def savingThrow(bonus: Int, dc: Int, fail: Dice, success: Dice) =
+  def savingThrow(bonus: Int, dc: Int, fail: Dice, success: Dice): Dice =
     for {
       roll <- d(20) + bonus
       dmg <- if (roll >= dc) success else fail
@@ -60,8 +60,16 @@ object DnD {
         val damageDice = (8 d 6) + (1 d 6).repeat(spellLevel - 3)
         savingThrow(targetDexSaveBonus,
                     casterSpellSaveDC,
-                    damageDice / 2,
-                    damageDice)
+                    damageDice,
+                    damageDice / 2)
       }
+
+    /** The total damage done to all targets of a Steel Wind Strike spell. */
+    def steelWindStrike(spellAttackBonus: Int,
+                        armorClasses: Multiset[Int]): Dice =
+      armorClasses
+        .map(attack(_, spellAttackBonus, 6 d 6))
+        .toList
+        .foldLeft(constant(0))(_ + _)
   }
 }
