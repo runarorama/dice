@@ -143,4 +143,14 @@ case class Dice(rep: Distribution[Int]) {
       case (sum, (a, m)) => sum + (a * m.toRational)
     } / rep.size.toRational
   }
+
+  def histogram: List[Double] = {
+    val m = rep.toMap
+    val highest = m.max._1
+    def go(n: Int, acc: List[Double]): List[Double] =
+      if (n >= 0)
+        go(n - 1, m.get(n).map(_.toDouble).getOrElse(0.0) :: acc)
+      else acc
+    go(highest, Nil)
+  }
 }
