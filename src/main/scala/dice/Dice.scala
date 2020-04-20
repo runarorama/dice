@@ -12,8 +12,7 @@ import spire.math._
   * - {{{ d(6) }}} is a 6-sided die.
   * - {{{ 2 d 6 }}} is the sum of two 6-sided dice.
   */
-case class Dice(rep: Distribution[Int]) {
-  import Dice._
+case class Dice private (private val rep: Distribution[Int]) {
 
   /** Combine two dice rolls using a function of their results. */
   def convolve(d: Dice)(f: (Int, Int) => Int): Dice =
@@ -76,6 +75,9 @@ case class Dice(rep: Distribution[Int]) {
     * probability, respectively.
     */
   def probabilities: Distribution[Int] = rep
+
+  /** Alias for [[probabilities]] */
+  def distribution: Distribution[Int] = rep
 
   /**
     * Reroll any values matching the predicate
@@ -154,3 +156,4 @@ case class Dice(rep: Distribution[Int]) {
     go(highest, Nil)
   }
 }
+

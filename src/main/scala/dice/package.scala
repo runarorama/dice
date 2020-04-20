@@ -20,7 +20,7 @@ package object dice {
 
   /** An n-sided die */
   def d(sides: Int) =
-    Dice(Range(1, sides + 1).foldLeft(empty.rep) {
+    Dice(Range(1, sides + 1).foldLeft(empty.distribution) {
       case (bag, n) => bag.insertN(n, Rational(1, sides))
     })
 
@@ -37,7 +37,7 @@ package object dice {
   def dropKLowest(dice: Multiset[Dice], k: Natural): Dice =
     Dice(
       dice
-        .traverse(_.rep)
+        .traverse(_.distribution)
         .map(_.toList.sorted.drop(k.toInt).sum))
 
   /**
@@ -45,4 +45,12 @@ package object dice {
     * Allows expressions like `4 d 6`
     */
   implicit def intToDice(n: Int): Dice = constant(n)
+
+  /** Dice form a realm */
+  implicit val diceRealm: Realm[Dice] = new Realm[Dice] {
+    def meet(x: Dice, y: Dice) = x min y
+    def join(x: Dice, y: Dice) = x max y
+    def plus(x: Dice, y: Dice) = x + y
+    val zero = constant(0)
+  }
 }

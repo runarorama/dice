@@ -14,11 +14,11 @@ object DnD {
 
   /** Generate all six ability scores. */
   def abilityScores: Distribution[Multiset[Int]] =
-    MSet(abilityScore -> Natural(6)).traverse(_.rep)
+    MSet(abilityScore -> Natural(6)).traverse(_.distribution)
 
   /** Generate ability scores, rolling straight 3d6, old school style. */
   def oldSchoolAbilityScores: Distribution[Multiset[Int]] =
-    MSet(3.d(6) -> Natural(6)).traverse(_.rep)
+    MSet(3.d(6) -> Natural(6)).traverse(_.distribution)
 
   /**
     * An attack roll against armor class `ac` with attack bonus `bonus` and
